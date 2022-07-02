@@ -16,7 +16,7 @@ fn main() {
     let mut board = setup_fg_board();
     let mut input = String::new();
     let mut player = 1;
-    
+
     loop {
         print_board(&board);
 
@@ -51,7 +51,7 @@ fn main() {
         } else {
             split_literal = input.split_at(2);
         }
-        
+
         let x = match parse_board_pos(&mut split_literal.0.to_string()) {
             Ok(n) => n,
             Err(n) => {println!("{}", n); continue}
@@ -68,7 +68,7 @@ fn main() {
                 continue
             }
         };
-        
+
         if player == 1 {
             player = 2;
         } else {
@@ -101,8 +101,6 @@ fn setup_fg_board() -> [[i8; 8]; 8] {
     board[0][4] = 1;
     board[0][6] = 1;
     board[7][7] = 4;
-
-    board[6][6] = 1;
 
     return board
 }
@@ -145,7 +143,7 @@ fn print_board(board: &[[i8; 8]; 8]) {
 fn parse_board_pos(s: &mut String) -> Result<(i8, i8), &'static str> {
     let y = s.pop().expect("Error");
     let x = s.pop().expect("Error");
-    
+
     let true_y = match x {
         'A' => 0,
         'B' => 1,
